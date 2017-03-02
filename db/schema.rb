@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170228001027) do
   end
 
   create_table "trips", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "description"
     t.string   "name"
     t.integer  "start_date"
