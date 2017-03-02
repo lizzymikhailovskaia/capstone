@@ -1,0 +1,15 @@
+<section>
+   <div class="row">
+     <div class="col-sm-8 col-sm-offset-2">
+       <div class="blog_single">
+           <h2><%= @trip.name %></h2>
+           <p>: <%= @trip.description %></p>
+
+           <% if is_owner? %>
+             <%= link_to "Edit", "/trips/#{@trip.id}/edit", class: "btn btn-success" %>
+             <%= link_to "Delete", "/trips/#{@trip.id}", {method: :delete, class: "btn btn-danger" }%>
+           <% end %>
+        </div>
+     </div>
+   </div>
+ </section>

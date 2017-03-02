@@ -1,0 +1,36 @@
+<section>
+  <div class="row">
+
+    <% if @trip && @trip.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+        <ul>
+        <% @trip.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="product_single">
+        <h1>Edit trip </h1>
+
+        <%= form_tag "/trips/#{@trip.id}", method: :patch do %>
+        <div>
+          <%= label_tag :name %>
+          <%= text_field_tag :name %>
+        </div>
+
+        <div>
+          <%= label_tag :description %>
+          <%= text_field_tag :description %>
+        </div>
+          <%= submit_tag "Update trip post" %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
