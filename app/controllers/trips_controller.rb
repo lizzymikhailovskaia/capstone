@@ -1,7 +1,12 @@
 class TripsController < ApplicationController
   before_action :find_blog, only: [:show, :edit, :update, :destroy]
   before_action :check_owner!, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :new]
+  # before_action :authenticate_user!, only: [:create, :new]
+
+  #TODO: remove it
+  def current_user
+    Users.first
+  end
 
  def index
    if session[:count] == nil
@@ -15,8 +20,8 @@ class TripsController < ApplicationController
    end
  end
 
- def new
- end
+ # def new
+ # end
 
  def create
    @trip = Trip.create(
@@ -40,8 +45,8 @@ class TripsController < ApplicationController
  def show
  end
 
- def edit
- end
+ # def edit
+ # end
 
  def update
    @trip.update(
