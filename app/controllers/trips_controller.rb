@@ -1,11 +1,11 @@
 class TripsController < ApplicationController
-  before_action :find_blog, only: [:show, :edit, :update, :destroy]
-  before_action :check_owner!, only: [:edit, :update, :destroy]
+  # before_action :find_blog, only: [:show, :edit, :update, :destroy]
+  # before_action :check_owner!, only: [:edit, :update, :destroy]
   # before_action :authenticate_user!, only: [:create, :new]
-
-  #TODO: remove it
+  #
+  # #TODO: remove it
   def current_user
-    Users.first
+    User.first
   end
 
  def index
@@ -32,13 +32,11 @@ class TripsController < ApplicationController
      start_date: params[:start_date],
      photo: params[:photo],
      user_id: current_user.id
-     )
-
+    )
    if @trip.save
-     flash[:success] = "Trip  Created"
-     redirect_to "/trips/#{@trip.id}"
+   render :nothing => true, :status => 200
    else
-     render :new
+   render :nothing => true, :status => 400
    end
  end
 
@@ -49,41 +47,36 @@ class TripsController < ApplicationController
  # end
 
  def update
+   @trip = Trip.find(params[:id])
    @trip.update(
-       description: params[:description],
-       name: params[:name],
-       public: params[:public],
-       end_date: params[:end_date],
-       start_date: params[:start_date],
-       photo: params[:photo],
-       user_id: current_user.id
-       )
-
-
+     description: params[:description],
+     name: params[:name],
+     public: params[:public],
+     end_date: params[:end_date],
+     start_date: params[:start_date],
+     photo: params[:photo],
+     user_id: current_user.id
+   )
    if @trip.save
-     flash[:success] = "Trip updated"
-     redirect_to "/trips/#{@trip.id}"
+   render :nothing => true, :status => 200
    else
-     render :edit
+   render :nothing => true, :status => 400
    end
  end
 
- def destroy
-   @trip.destroy
-   flash[:warning] = "Trip Destroyed"
-   redirect_to "/"
- end
+  def destroy
+    @trip = Trip.find(params[:id])
+    @trip.destroy
+    render :nothing => true, :status => 200
+  end
 
- def search
- end
+ # private
+ # #
+ # def check_owner!
+ #   redirect_to '/' unless current_user && current_user.id == @trip.user_id
+ # end
 
- private
-
- def check_owner!
-   redirect_to '/' unless current_user && current_user.id == @trip.user_id
- end
-
- def find_blog
-    @trip = Trip.find_by(id: params[:id])
- end
+ # def find_blog
+ #    @trip = Trip.find_by(id: params[:id])
+ # end
 end
