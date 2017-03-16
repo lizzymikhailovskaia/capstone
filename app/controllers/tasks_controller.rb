@@ -1,15 +1,12 @@
 class TasksController < ApplicationController
-
   def index
-    if session[:count] == nil
-      session[:count] = 0
-    end
-    session[:count] += 1
-    @visit_count = session[:count]
-    @tasks = Task.all
-    if params[:category]
-      @tasks = Category.find_by(name: params[:category]).tasks
-    end
+    tasks = Task.all
+    render json: tasks
+  end
+
+  def show
+    task = Task.find(params[:id])
+    render json: task
   end
 
   def create

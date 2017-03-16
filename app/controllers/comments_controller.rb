@@ -1,4 +1,13 @@
 class CommentsController < ApplicationController
+  def index
+    comments = Comments.all
+    render json: comments
+  end
+
+  def show
+    comment = Comment.find(params[:id])
+    render json: comment
+  end
 
   def new
     @comment = Comment.new

@@ -8,20 +8,15 @@ class TripsController < ApplicationController
     User.first
   end
 
- def index
-   if session[:count] == nil
-     session[:count] = 0
-   end
-   session[:count] += 1
-   @visit_count = session[:count]
-   @trips = Trip.all
-   if params[:category]
-     @trips = Category.find_by(name: params[:category]).trips
-   end
- end
+  def index
+    trips = Trip.all
+    render json: trips
+  end
 
- # def new
- # end
+  def show
+    trip = Trip.find(params[:id])
+    render json: trip
+  end
 
  def create
    @trip = Trip.create(
@@ -42,9 +37,6 @@ class TripsController < ApplicationController
 
  def show
  end
-
- # def edit
- # end
 
  def update
    @trip = Trip.find(params[:id])
