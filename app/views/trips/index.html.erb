@@ -1,18 +1,35 @@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <h5>You have visited this page <%= @visit_count %> times.</h5>
     <section>
       <div class="row">
-
         <% @trips.each do |trip| %>
-
           <div class="col-sm-4">
             <div class="product_single">
-              <h2 class="product_header"><%= trip.name %></h2>
-              <p>title: <%= trip.name %></p>
-              <a href="/trips/<%= trip.id %>" title="View trip"></a>
-
+            <tr>
+            <th> <p>Trips name: <%= trip.name %></p></th>
+            <th> <p>Description: <%= trip.description %></p> </th><br />
+            <th> <p>Start date: <%= trip.start_date %> </p> </th>
+            <th><p>Final day: <%= trip.end_date %></p>  </th><br />
+            <a href="/trips/<%= trip.id %>" title="View trip"></a>
+            </tr>
             </div>
           </div>
         <% end %>
-
       </div>
     </section>

@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
+gem 'unirest'
 
 group :test do
   gem 'rake'
