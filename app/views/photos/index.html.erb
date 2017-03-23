@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="row">
+  <% @photos.each do |photo|%>
+      <div class="col-xs-6 col-md-3">
+        <h5><%= photo.location_id %></h5>
+        <a href="#" class="thumbnail">
+          <img src="<%= photo.file %>" alt="...">
+        </a>
+      </div>
+   <% end %>
+</div>

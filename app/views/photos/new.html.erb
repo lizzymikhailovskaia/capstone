@@ -1,0 +1,14 @@
+<p>New Photo</p>
+  <%= form_tag "/photos", method: :post, multipart: true do %>
+     <div>
+        <%= label_tag :file %>
+        <%= file_field_tag :file, accept: 'image/*;capture=camera' %>
+     </div>
+
+    <div>
+     <%= label_tag :location_id %>
+     <%= text_field_tag :location_id%>
+   </div>
+
+ <input type="submit" value="Create Post">
+  <% end %>
