@@ -28,6 +28,11 @@ class LocationsController < ApplicationController
     end
   end
 
+  def photos
+    location = Location.find(params[:id])
+    render json: location.photos
+  end
+
   def update
     @location = Location.find(params[:id])
     @location.update(

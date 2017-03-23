@@ -8,6 +8,14 @@ Bundler.require(*Rails.groups)
 
 module Capstone
   class Application < Rails::Application
+    # don't use in production without strict need - security issue
+    config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, :logger => Rails.logger do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
