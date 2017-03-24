@@ -5,12 +5,12 @@ class TaskList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       task: []
+       tasks: []
      };
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/task`, {
+    fetch(`http://localhost:3000/tasks`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -18,14 +18,14 @@ class TaskList extends React.Component {
     }).then ( response => response.json() )
       .then( json =>
         this.setState({
-          task: json
+          tasks: json
         })
       )
       .catch(function (error) {/*Handle error*/});
   }
 
   render() {
-    const taskItems = this.state.task.map((task) => {
+    const taskItems = this.state.tasks.map((task) => {
       return (
          <LocationListItem
           key={task.id}
