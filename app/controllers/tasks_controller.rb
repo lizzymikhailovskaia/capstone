@@ -12,8 +12,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.create(
       name: params[:name],
-      location_id: params[:location_id],
-      position: params[:position],
+      location_id: params[:location_id]
     )
     if @task.save
       render :nothing => true, :status => 200
@@ -25,9 +24,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update(
-      name: params[:name],
-      location_id: params[:location_id],
-      position: params[:position]
+      name: params[:name]
     )
     if @task.save
       render :nothing => true, :status => 200

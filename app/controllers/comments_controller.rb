@@ -1,4 +1,9 @@
 class CommentsController < ApplicationController
+  # #TODO: remove it
+  def current_user
+    User.first
+  end
+
   def index
     comments = Comments.all
     render json: comments
@@ -15,11 +20,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create(
-      name: params[:name],
       text: params[:text],
       trip_id: params[:trip_id],
       location_id: params[:location_id],
-      user_id: params[:user_id]
+      user_id: current_user.id
     )
 
     if @comment.save
@@ -29,15 +33,10 @@ class CommentsController < ApplicationController
     end
   end
 
-
   def update
     @comment = Comment.find(params[:id])
     @comment.update(
-      name: params[:name],
       text: params[:text],
-      trip_id: params[:trip_id],
-      location_id: params[:location_id],
-      user_id: params[:user_id]
     )
 
     if @comment.save

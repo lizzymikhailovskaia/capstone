@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20170303042418) do
     t.integer  "trip_id"
     t.integer  "location_id"
     t.integer  "user_id"
-    t.string   "name"
     t.text     "text"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

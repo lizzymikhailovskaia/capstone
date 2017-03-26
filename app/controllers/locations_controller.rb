@@ -28,23 +28,37 @@ class LocationsController < ApplicationController
     end
   end
 
+  def photos
+    location = Location.find(params[:id])
+    render json: location.photos
+  end
+
+  def comments
+    location = Location.find(params[:id])
+    render json: location.comments.to_json(include: :user)
+  end
+
+  def tasks
+    location = Location.find(params[:id])
+    render json: location.tasks
+  end
+
   def update
     @location = Location.find(params[:id])
     @location.update(
-    name: params[:name],
-    adress: params[:adress],
-    description: params[:description],
-    trip_id: params[:trip_id],
-    start_date: params[:start_date],
-    end_date: params[:end_date],
-    position: params[:position],
-    lat: params[:lat],
-    ing: params[:ing]
+      name: params[:name],
+      adress: params[:adress],
+      description: params[:description],
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      position: params[:position],
+      lat: params[:lat],
+      ing: params[:ing]
     )
     if @location.save
       render :nothing => true, :status => 200
     else
-      render :nothing => true, :status => 400
+      render :json => @location.errors, :status => 400
     end
   end
 
