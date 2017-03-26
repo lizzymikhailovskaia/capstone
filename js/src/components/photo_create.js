@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import TripForm from './trip_form';
+import PhotoForm from './photo_form';
 
-class TripCreate extends React.Component {
+class PhotoCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,20 +10,22 @@ class TripCreate extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/trips');
+    this.props.onSubmit();
   }
 
   handleSubmit = (data) => {
     this.setState({ processing: true });
 
+    const location_id = this.props.location_id;
     const _this = this;
 
     let formData = new FormData();
     for (let [key, value] of Object.entries(data)) {
       formData.append(key, value);
     }
+    formData.append('location_id', location_id);
 
-    fetch("http://localhost:3000/trips", {
+    fetch("http://localhost:3000/photos", {
       method: "POST",
       headers: {},
       body: formData
@@ -46,23 +48,18 @@ class TripCreate extends React.Component {
 
     let form = '';
     if (!processing) {
-      form = <TripForm onFormSubmit={this.handleSubmit} />;
+      form = <PhotoForm onFormSubmit={this.handleSubmit} />;
     } else {
       form = <div>loading...</div>;
     }
 
     return (
       <div>
-        <h1>Create Trip</h1>
+        <h1>Create Photo</h1>
         {form}
       </div>
     );
   }
 }
 
-// if router is needed
-TripCreate.contextTypes = {
-  router: React.PropTypes.object.isRequired
-};
-
-export default TripCreate;
+export default PhotoCreate;

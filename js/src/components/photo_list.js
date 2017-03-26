@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PhotoListItem from './photo_list_item';
+import PhotoCreate from './photo_create'
 
 class PhotoList extends React.Component {
   constructor(props) {
@@ -10,6 +11,10 @@ class PhotoList extends React.Component {
   }
 
   componentDidMount() {
+    this.loadData();
+  }
+
+  loadData() {
     const id = this.props.params.id;
 
     fetch(`http://localhost:3000/locations/${id}/photos`, {
@@ -26,6 +31,10 @@ class PhotoList extends React.Component {
       .catch(function (error) {/*Handle error*/});
   }
 
+  handleUpdate = () => {
+    this.loadData();
+  }
+
   render() {
     const photoItems = this.state.photos.map((photo) => {
       return (
@@ -36,9 +45,13 @@ class PhotoList extends React.Component {
        );
     });
 
+    const id = this.props.params.id;
     return (
-      <div className="row">
-       {photoItems}
+      <div>
+        <PhotoCreate onSubmit={this.handleUpdate} location_id={id}/>
+        <div>
+          {photoItems}
+        </div>
       </div>
     );
   }

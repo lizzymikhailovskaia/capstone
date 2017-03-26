@@ -1,3 +1,5 @@
+require 'unirest'
+
 class TripsController < ApplicationController
   # before_action :find_blog, only: [:show, :edit, :update, :destroy]
   # before_action :check_owner!, only: [:edit, :update, :destroy]
@@ -29,38 +31,61 @@ class TripsController < ApplicationController
   end
 
   def create
-   @trip = Trip.create(
-     description: params[:description],
-     name: params[:name],
-     public: params[:public],
-     end_date: params[:end_date],
-     start_date: params[:start_date],
-     photo: params[:photo],
-     user_id: current_user.id
+    photo_url = nil
+    unless params[:photo] == 'null'
+      response = Unirest.post(
+        "http://uploads.im/api?upload",
+        parameters: {
+          file: params[:photo]
+          }
+      ).body
+      photo_url = response["data"]["img_url"]
+    end
+
+    @trip = Trip.create(
+      description: params[:description],
+      name: params[:name],
+      public: params[:public],
+      end_date: params[:end_date],
+      start_date: params[:start_date],
+      photo: photo_url,
+      user_id: current_user.id
     )
-   if @trip.save
-   render :nothing => true, :status => 200
-   else
-   render :nothing => true, :status => 400
-   end
+    if @trip.save
+      render :nothing => true, :status => 200
+    else
+      render :nothing => true, :status => 400
+    end
   end
 
   def update
-   @trip = Trip.find(params[:id])
-   @trip.update(
-     description: params[:description],
-     name: params[:name],
-     public: params[:public],
-     end_date: params[:end_date],
-     start_date: params[:start_date],
-     photo: params[:photo],
-     user_id: current_user.id
-   )
-   if @trip.save
-   render :nothing => true, :status => 200
-   else
-   render :nothing => true, :status => 400
-   end
+    @trip = Trip.find(params[:id])
+
+    photo_url = @trip.photo
+    unless params[:photo] == 'null'
+      response = Unirest.post(
+       "http://uploads.im/api?upload",
+       parameters: {
+         file: params[:photo]
+         }
+      ).body
+      photo_url = response["data"]["img_url"]
+    end
+
+    @trip.update(
+      description: params[:description],
+      name: params[:name],
+      public: params[:public],
+      end_date: params[:end_date],
+      start_date: params[:start_date],
+      photo: photo_url,
+      user_id: current_user.id
+    )
+    if @trip.save
+      render :nothing => true, :status => 200
+    else
+      render :nothing => true, :status => 400
+    end
   end
 
   def destroy

@@ -1,20 +1,13 @@
+require 'unirest'
+
 class PhotosController < ApplicationController
-  def index
-    @photos = Photo.all
-    # render json: photos
-  end
-
-  def new
-   @photo = Photo.new
-  end
-
   def create
     response = Unirest.post("http://uploads.im/api?upload", parameters: {file: params[:file]}).body
     @photo = Photo.create(
       location_id: params[:location_id],
       file: response["data"]["img_url"]
     )
-    redirect_to "/photos"
+    render :nothing => true, :status => 200
   end
 
   def show
@@ -28,5 +21,4 @@ class PhotosController < ApplicationController
     flash[:warning] = "photo Destroyed"
     render :nothing => true, :status => 200
   end
-
 end
