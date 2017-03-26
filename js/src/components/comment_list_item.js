@@ -29,8 +29,12 @@ class CommentListItem extends React.Component {
     } else {
       view =
         <div>
+          <p>
+            <strong>{comment.user.name}</strong>
+            <span> said at </span>
+            <i>{comment.created_at}</i>:
+          </p>
           <p>{comment.text}</p>
-          <p>{comment.created_at}</p>
           <button onClick={this.startEditing}>Edit</button>
         </div>
       ;

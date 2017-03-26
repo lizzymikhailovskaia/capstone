@@ -25,7 +25,7 @@ class TripsController < ApplicationController
 
   def comments
     trip = Trip.find(params[:id])
-    render json: trip.comments
+    render json: trip.comments.to_json(include: :user)
   end
 
   def create

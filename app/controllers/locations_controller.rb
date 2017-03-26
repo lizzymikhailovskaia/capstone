@@ -35,7 +35,7 @@ class LocationsController < ApplicationController
 
   def comments
     location = Location.find(params[:id])
-    render json: location.comments
+    render json: location.comments.to_json(include: :user)
   end
 
   def tasks
