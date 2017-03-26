@@ -4,11 +4,11 @@ class TripForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.data ? this.props.data : {
-      name: null,
-      description: null,
-      start_date: null,
-      end_date: null,
-      public: null
+      name: "",
+      description: "",
+      start_date: "",
+      end_date: "",
+      public: false
     };
   }
 

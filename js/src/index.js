@@ -9,6 +9,7 @@ import TripCreate from './components/trip_create';
 import TripEdit from './components/trip_edit';
 import LocationEdit from './components/location_edit';
 import LocationCreate from './components/location_create'
+import Trip from './components/trip'
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ ReactDOM.render((
       <Route path="/trips" component={TripList}/>
       <Route path="/trips/new" component={TripCreate}/>
       <Route path="/trips/:id/edit" component={TripEdit}/>
+      <Route path="/trips/:id" component={Trip}/>
 
       <Route path="/trips/:id/new-location" component={LocationCreate}/>
       <Route path="/locations/:id/edit" component={LocationEdit}/>

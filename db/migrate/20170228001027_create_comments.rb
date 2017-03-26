@@ -4,7 +4,6 @@ class CreateComments < ActiveRecord::Migration
       t.integer :trip_id
       t.integer :location_id
       t.integer :user_id
-      t.string :name
       t.text :text
 
       t.timestamps null: false

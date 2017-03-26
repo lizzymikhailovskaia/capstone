@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import LocationListItem from './location_list_item';
 
-class TripList extends React.Component {
+class LocationList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       trips: []
+       locations: []
      };
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/locations`, {
+    const trip_id = this.props.trip_id;
+    fetch(`http://localhost:3000/trips/${trip_id}/locations`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -18,18 +19,18 @@ class TripList extends React.Component {
     }).then ( response => response.json() )
       .then( json =>
         this.setState({
-          trips: json
+          locations: json
         })
       )
       .catch(function (error) {/*Handle error*/});
   }
 
   render() {
-    const locationItems = this.state.locations.map((trip) => {
+    const locationItems = this.state.locations.map((location) => {
       return (
          <LocationListItem
           key={location.id}
-          trip={location}/>
+          location={location}/>
        );
     });
 
@@ -41,4 +42,4 @@ class TripList extends React.Component {
   }
 };
 
-export default LocationListItemList;
+export default LocationList;

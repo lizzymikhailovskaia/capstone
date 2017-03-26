@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import TripInfo from './trip_info';
+import LocationList from './location_list';
+import CommentList from './comment_list';
 
 class Trip extends React.Component {
   constructor(props) {
@@ -9,7 +12,8 @@ class Trip extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/trips`, {
+    const id = this.props.params.id;
+    fetch(`http://localhost:3000/trips/${id}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -24,9 +28,13 @@ class Trip extends React.Component {
   }
 
   render() {
-
     return (
-      <div className="row">
+      <div>
+        <div>
+          <TripInfo trip={this.state.trip}></TripInfo>
+        </div>
+        <LocationList trip_id={this.props.params.id}></LocationList>
+        <CommentList trip_id={this.props.params.id}></CommentList>
       </div>
     );
   }

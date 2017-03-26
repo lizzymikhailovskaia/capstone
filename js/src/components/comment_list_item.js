@@ -1,18 +1,47 @@
-import React from 'react';
+import React, {Component} from 'react';
+import CommentEdit from './comment_edit';
 
-const LocationListItem = ({location}) => {
-  return (
-    <div className="col-xs-6 col-md-3">
-      <p>{location.name}</p>
-      <p>{location.adress}</p>
-      <p>{location.description}</p>
-      <p>{location.start_date}</p>
-      <p>{location.end_date}</p>
-      <a href={ `/locations/${location.id}` } className="thumbnail">
-        <img src={ location.photo } alt="..."/>
-      </a>
-    </div>
-  );
+class CommentListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+       editMode: false
+     };
+  }
+
+  onSubmit = () => {
+    this.setState({ editMode: false });
+    this.props.onUpdate();
+  }
+
+  startEditing = () => {
+    this.setState({ editMode: true });
+  }
+
+  render() {
+    const comment = this.props.comment;
+
+    let view = '';
+    if (this.state.editMode) {
+      view =
+        <CommentEdit onSubmit={this.onSubmit} comment={comment}/>
+
+    } else {
+      view =
+        <div>
+          <p>{comment.text}</p>
+          <p>{comment.created_at}</p>
+          <button onClick={this.startEditing}>Edit</button>
+        </div>
+      ;
+    }
+
+    return (
+      <div>
+        {view}
+      </div>
+    );
+  }
 };
 
-export default LocationListItem;
+export default CommentListItem;

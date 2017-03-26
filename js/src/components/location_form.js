@@ -4,12 +4,12 @@ class LocationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.data ? this.props.data : {
-      name: null,
-      adress: null,
-      description: null,
-      start_date: null,
-      end_date: null,
-      public: null
+      name: "",
+      adress: "",
+      description: "",
+      start_date: "",
+      end_date: "",
+      public: false
     };
   }
 
@@ -23,7 +23,7 @@ class LocationForm extends React.Component {
     data.description = this.state.description;
     data.start_date = this.state.start_date;
     data.end_date = this.state.end_date;
-  
+
 
     //simple validation
     if (!data.name) {

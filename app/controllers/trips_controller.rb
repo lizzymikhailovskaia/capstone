@@ -18,7 +18,17 @@ class TripsController < ApplicationController
     render json: trip
   end
 
- def create
+  def locations
+    trip = Trip.find(params[:id])
+    render json: trip.locations
+  end
+
+  def comments
+    trip = Trip.find(params[:id])
+    render json: trip.comments
+  end
+
+  def create
    @trip = Trip.create(
      description: params[:description],
      name: params[:name],
@@ -33,9 +43,9 @@ class TripsController < ApplicationController
    else
    render :nothing => true, :status => 400
    end
- end
+  end
 
- def update
+  def update
    @trip = Trip.find(params[:id])
    @trip.update(
      description: params[:description],
@@ -51,7 +61,7 @@ class TripsController < ApplicationController
    else
    render :nothing => true, :status => 400
    end
- end
+  end
 
   def destroy
     @trip = Trip.find(params[:id])

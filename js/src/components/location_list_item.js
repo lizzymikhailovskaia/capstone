@@ -8,9 +8,6 @@ const LocationListItem = ({location}) => {
       <p>{location.description}</p>
       <p>{location.start_date}</p>
       <p>{location.end_date}</p>
-      <a href={ `/locations/${location.id}` } className="thumbnail">
-        <img src={ location.photo } alt="..."/>
-      </a>
     </div>
   );
 };
