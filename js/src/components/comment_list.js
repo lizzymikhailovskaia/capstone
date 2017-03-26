@@ -15,8 +15,15 @@ class CommentList extends React.Component {
   }
 
   loadData() {
-    const trip_id = this.props.trip_id;
-    fetch(`http://localhost:3000/trips/${trip_id}/comments`, {
+    const id = this.props.id;
+    let resource;
+    if(this.props.type == 'trip') {
+      resource = 'trips';
+    } else {
+      resource = 'locations';
+    }
+
+    fetch(`http://localhost:3000/${resource}/${id}/comments`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -44,11 +51,12 @@ class CommentList extends React.Component {
        );
     });
 
-    const trip_id = this.props.trip_id;
+    const id = this.props.id;
+    const type = this.props.type;
 
     return (
       <div>
-        <CommentCreate onSubmit={this.handleUpdate} trip_id={trip_id}/>
+        <CommentCreate onSubmit={this.handleUpdate} type={type} id={id}/>
         <div>
           {commentItems}
         </div>

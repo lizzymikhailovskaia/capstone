@@ -38,6 +38,11 @@ class LocationsController < ApplicationController
     render json: location.comments
   end
 
+  def tasks
+    location = Location.find(params[:id])
+    render json: location.tasks
+  end
+
   def update
     @location = Location.find(params[:id])
     @location.update(

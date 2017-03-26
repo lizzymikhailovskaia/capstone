@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import TripInfo from './trip_info';
-import LocationList from './location_list';
+import LocationInfo from './location_info';
+import TaskList from './task_list';
 import CommentList from './comment_list';
 
-class Trip extends React.Component {
+class Location extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       trip: []
+       location: []
      };
   }
 
   componentDidMount() {
     const id = this.props.params.id;
-    fetch(`http://localhost:3000/trips/${id}`, {
+    fetch(`http://localhost:3000/locations/${id}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -21,7 +21,7 @@ class Trip extends React.Component {
     }).then ( response => response.json() )
       .then( json =>
         this.setState({
-          trip: json
+          location: json
         })
       )
       .catch(function (error) {/*Handle error*/});
@@ -31,13 +31,13 @@ class Trip extends React.Component {
     return (
       <div>
         <div>
-          <TripInfo trip={this.state.trip}></TripInfo>
+          <LocationInfo location={this.state.location}></LocationInfo>
         </div>
-        <LocationList trip_id={this.props.params.id}></LocationList>
-        <CommentList type="trip" id={this.props.params.id}></CommentList>
+        <TaskList location_id={this.props.params.id}></TaskList>
+        <CommentList type="location" id={this.props.params.id}></CommentList>
       </div>
     );
   }
 };
 
-export default Trip;
+export default Location;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TaskListItem from './task_list_item';
+import TaskCreate from './task_create';
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -10,7 +11,12 @@ class TaskList extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/tasks`, {
+    this.loadData();
+  }
+
+  loadData() {
+    const location_id = this.props.location_id;
+    fetch(`http://localhost:3000/locations/${location_id}/tasks`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -24,21 +30,31 @@ class TaskList extends React.Component {
       .catch(function (error) {/*Handle error*/});
   }
 
+  handleUpdate = () => {
+    this.loadData();
+  }
+
   render() {
     const taskItems = this.state.tasks.map((task) => {
       return (
-         <LocationListItem
+         <TaskListItem
           key={task.id}
+          onUpdate={this.handleUpdate}
           task={task}/>
        );
     });
 
+    const location_id = this.props.location_id;
+
     return (
-      <div className="row">
-       {taskItems}
+      <div>
+        <TaskCreate onSubmit={this.handleUpdate} location_id={location_id}/>
+        <div>
+          {taskItems}
+        </div>
       </div>
     );
   }
 };
 
-export default TaskListItemList;
+export default TaskList;

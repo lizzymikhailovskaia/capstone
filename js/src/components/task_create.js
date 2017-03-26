@@ -1,27 +1,22 @@
 import React, {Component} from 'react';
-import CommentForm from './comment_form';
+import TaskForm from './task_form';
 
-class CommentCreate extends React.Component {
+class TaskCreate extends React.Component {
   handleSuccess() {
     this.props.onSubmit();
   }
 
   handleSubmit = (data) => {
-    const id = this.props.id;
-    const type = this.props.type;
+    const location_id = this.props.location_id;
     const _this = this;
 
     let formData = new FormData();
     for (let [key, value] of Object.entries(data)) {
       formData.append(key, value);
     }
-    if (type == 'trip') {
-      formData.append('trip_id', id);
-    } else {
-      formData.append('location_id', id);
-    }
+    formData.append('location_id', location_id);
 
-    fetch("http://localhost:3000/comments", {
+    fetch("http://localhost:3000/tasks", {
       method: "POST",
       headers: {},
       body: formData
@@ -39,11 +34,11 @@ class CommentCreate extends React.Component {
   render() {
     return (
       <div>
-        <h1>Create Comment</h1>
-        <CommentForm onFormSubmit={this.handleSubmit} />
+        <h1>Create Task</h1>
+        <TaskForm onFormSubmit={this.handleSubmit} />
       </div>
     );
   }
 }
 
-export default CommentCreate;
+export default TaskCreate;

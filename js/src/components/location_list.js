@@ -35,8 +35,11 @@ class LocationList extends React.Component {
     });
 
     return (
-      <div className="row">
-       {locationItems}
+      <div>
+        <h2>Places to visit</h2>
+        <div className="row">
+         {locationItems}
+        </div>
       </div>
     );
   }

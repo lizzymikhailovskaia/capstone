@@ -3,7 +3,8 @@ import LocationForm from './location_form';
 
 class LocationCreate extends React.Component {
   handleSuccess() {
-    this.context.router.push('/locations');
+    const trip_id = this.props.params.id;
+    this.context.router.push(`/trips/${trip_id}`);
   }
 
   handleSubmit = (data) => {
