@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import UserInfo from './user_info';
 import TripList from './trip_list';
 
@@ -28,11 +29,20 @@ class User extends React.Component {
   }
 
   render() {
+    const user_id = localStorage.getItem('user_id');
+    let createLink = '';
+    if (user_id == this.state.user.id) {
+      createLink = <Link to={`/trips/new`}>Create a trip</Link>;
+    }
+
     return (
       <div>
         <div>
           <UserInfo user={this.state.user}></UserInfo>
         </div>
+
+        {createLink}
+
         <TripList user_id={this.props.params.id}></TripList>
       </div>
     );

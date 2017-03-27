@@ -28,7 +28,7 @@ class LocationEdit extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/locations');
+    this.context.router.goBack();
   }
 
   handleSubmit = (data) => {

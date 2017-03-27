@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 #   end
 #
   def authenticate_user!
-    render :json => { error: "please log in" }, :status => 401
+    render :json => { error: "please log in" }, :status => 401 unless current_user.id
   end
 
   def unauthorized

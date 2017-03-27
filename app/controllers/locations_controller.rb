@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def show
-    render json: @location
+    render json: @location.to_json(include: { trip: { include: :user }})
   end
 
   def create

@@ -1,10 +1,15 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 const LocationListItem = ({location}) => {
   return (
     <div className="col-md-12">
       <hr/>
-      <p><strong>{location.name}</strong></p>
+      <p>
+        <Link to={`/locations/${location.id}`}>
+          <strong>{location.name}</strong>
+        </Link>
+      </p>
       <p>{location.adress}</p>
       <p>{location.description}</p>
       <p>{location.start_date}</p>
