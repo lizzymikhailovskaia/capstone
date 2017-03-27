@@ -15,6 +15,7 @@ class TripEdit extends React.Component {
 
     fetch(`http://localhost:3000/trips/${id}`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },
@@ -28,7 +29,7 @@ class TripEdit extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/trips');
+    this.context.router.push('/');
   }
 
   handleSubmit = (data) => {

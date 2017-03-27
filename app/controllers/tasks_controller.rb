@@ -1,15 +1,12 @@
 class TasksController < ApplicationController
-  def index
-    tasks = Task.all
-    render json: tasks
-  end
-
-  def show
-    task = Task.find(params[:id])
-    render json: task
-  end
+  before_action :find_record!, only: [:update, :destroy]
+  before_action :check_owner!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   def create
+    location = Location.find(params[:location_id])
+    unauthorized unless current_user && current_user.id == location.trip.user_id
+
     @task = Task.create(
       name: params[:name],
       location_id: params[:location_id]
@@ -22,7 +19,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
     @task.update(
       name: params[:name]
     )
@@ -34,9 +30,18 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     flash[:warning] = "Task Destroyed"
     render :nothing => true, :status => 200
+  end
+
+  private
+
+  def check_owner!
+    unauthorized unless current_user && current_user.id == @task.location.trip.user_id
+  end
+
+  def find_record!
+    @task = Task.find(params[:id])
   end
 end

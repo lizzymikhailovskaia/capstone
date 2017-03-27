@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import TripInfo from './trip_info';
-import LocationList from './location_list';
-import CommentList from './comment_list';
+import UserInfo from './user_info';
+import TripList from './trip_list';
 
-class Trip extends React.Component {
+class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       trip: []
+       user: []
      };
   }
 
   componentDidMount() {
     const id = this.props.params.id;
-    fetch(`http://localhost:3000/trips/${id}`, {
+    fetch(`http://localhost:3000/users/${id}`, {
       method: 'GET',
       credentials: "include",
       headers: {
@@ -22,7 +21,7 @@ class Trip extends React.Component {
     }).then ( response => response.json() )
       .then( json =>
         this.setState({
-          trip: json
+          user: json
         })
       )
       .catch(function (error) {/*Handle error*/});
@@ -32,13 +31,12 @@ class Trip extends React.Component {
     return (
       <div>
         <div>
-          <TripInfo trip={this.state.trip}></TripInfo>
+          <UserInfo user={this.state.user}></UserInfo>
         </div>
-        <LocationList trip_id={this.props.params.id}></LocationList>
-        <CommentList type="trip" id={this.props.params.id}></CommentList>
+        <TripList user_id={this.props.params.id}></TripList>
       </div>
     );
   }
 };
 
-export default Trip;
+export default User;

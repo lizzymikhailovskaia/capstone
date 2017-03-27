@@ -25,6 +25,7 @@ class CommentList extends React.Component {
 
     fetch(`http://localhost:3000/${resource}/${id}/comments`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },

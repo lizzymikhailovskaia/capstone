@@ -13,6 +13,7 @@ class LocationList extends React.Component {
     const trip_id = this.props.trip_id;
     fetch(`http://localhost:3000/trips/${trip_id}/locations`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },

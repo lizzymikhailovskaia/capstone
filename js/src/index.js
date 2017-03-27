@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import PhotoList from './components/photo_list';
 import Home from './components/home';
-import TripList from './components/trip_list';
+import User from './components/user';
+import UserSignup from './components/user_signup';
+import UserLogin from './components/user_login';
 import TripCreate from './components/trip_create';
 import TripEdit from './components/trip_edit';
 import LocationEdit from './components/location_edit';
@@ -33,7 +35,10 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
 
-      <Route path="/trips" component={TripList}/>
+      <Route path="/users/:id" component={User}/>
+      <Route path="/signup" component={UserSignup}/>
+      <Route path="/login" component={UserLogin}/>
+
       <Route path="/trips/new" component={TripCreate}/>
       <Route path="/trips/:id/edit" component={TripEdit}/>
       <Route path="/trips/:id" component={Trip}/>

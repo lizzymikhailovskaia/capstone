@@ -1,15 +1,16 @@
 class LocationsController < ApplicationController
-  def index
-    locations = Location.all
-    render json: locations
-  end
+  before_action :find_record!, only: [:show, :update, :destroy, :tasks, :comments, :photos]
+  before_action :check_owner!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   def show
-    location = Location.find(params[:id])
-    render json: location
+    render json: @location
   end
 
   def create
+    trip = Trip.find(params[:trip_id])
+    unauthorized unless current_user && current_user.id == trip.user_id
+
     @location = Location.create(
       name: params[:name],
       adress: params[:adress],
@@ -29,22 +30,18 @@ class LocationsController < ApplicationController
   end
 
   def photos
-    location = Location.find(params[:id])
-    render json: location.photos
+    render json: @location.photos
   end
 
   def comments
-    location = Location.find(params[:id])
-    render json: location.comments.to_json(include: :user)
+    render json: @location.comments.to_json(include: :user)
   end
 
   def tasks
-    location = Location.find(params[:id])
-    render json: location.tasks
+    render json: @location.tasks
   end
 
   def update
-    @location = Location.find(params[:id])
     @location.update(
       name: params[:name],
       adress: params[:adress],
@@ -63,8 +60,17 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-   @location = Location.find(params[:id])
    @location.destroy
   render :nothing => true, :status => 200
+  end
+
+  private
+
+  def check_owner!
+    unauthorized unless current_user && current_user.id == @location.trip.user_id
+  end
+
+  def find_record!
+    @location = Location.find(params[:id])
   end
 end

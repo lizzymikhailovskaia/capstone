@@ -10,7 +10,7 @@ class TripCreate extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/trips');
+    this.context.router.push('/');
   }
 
   handleSubmit = (data) => {
@@ -26,7 +26,8 @@ class TripCreate extends React.Component {
     fetch("http://localhost:3000/trips", {
       method: "POST",
       headers: {},
-      body: formData
+      body: formData,
+      credentials: "include"
     }).then( (res) => {
       if (res.ok) {
         this.setState({ processing: false });

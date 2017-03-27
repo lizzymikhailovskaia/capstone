@@ -1,27 +1,20 @@
 import React, {Component} from 'react';
-import CommentForm from './comment_form';
+import LoginForm from './login_form';
 
-class CommentCreate extends React.Component {
+class UserSignup extends React.Component {
   handleSuccess() {
-    this.props.onSubmit();
+    this.context.router.push('/');
   }
 
   handleSubmit = (data) => {
-    const id = this.props.id;
-    const type = this.props.type;
     const _this = this;
 
     let formData = new FormData();
     for (let [key, value] of Object.entries(data)) {
       formData.append(key, value);
     }
-    if (type == 'trip') {
-      formData.append('trip_id', id);
-    } else {
-      formData.append('location_id', id);
-    }
 
-    fetch("http://localhost:3000/comments", {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {},
       body: formData,
@@ -40,11 +33,16 @@ class CommentCreate extends React.Component {
   render() {
     return (
       <div>
-        <h1>Create Comment</h1>
-        <CommentForm onFormSubmit={this.handleSubmit} />
+        <h1>Login</h1>
+        <LoginForm onFormSubmit={this.handleSubmit}/>
       </div>
     );
   }
 }
 
-export default CommentCreate;
+// if router is needed
+UserSignup.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default UserSignup;

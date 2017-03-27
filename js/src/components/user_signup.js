@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import PhotoForm from './photo_form';
+import UserForm from './user_form';
 
-class PhotoCreate extends React.Component {
+class UserSignup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,22 +10,20 @@ class PhotoCreate extends React.Component {
   }
 
   handleSuccess() {
-    this.props.onSubmit();
+    this.context.router.push('/login');
   }
 
   handleSubmit = (data) => {
     this.setState({ processing: true });
 
-    const location_id = this.props.location_id;
     const _this = this;
 
     let formData = new FormData();
     for (let [key, value] of Object.entries(data)) {
       formData.append(key, value);
     }
-    formData.append('location_id', location_id);
 
-    fetch("http://localhost:3000/photos", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {},
       body: formData,
@@ -49,18 +47,23 @@ class PhotoCreate extends React.Component {
 
     let form = '';
     if (!processing) {
-      form = <PhotoForm onFormSubmit={this.handleSubmit} />;
+      form = <UserForm onFormSubmit={this.handleSubmit} />;
     } else {
       form = <div>loading...</div>;
     }
 
     return (
       <div>
-        <h1>Create Photo</h1>
+        <h1>Create</h1>
         {form}
       </div>
     );
   }
 }
 
-export default PhotoCreate;
+// if router is needed
+UserSignup.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default UserSignup;

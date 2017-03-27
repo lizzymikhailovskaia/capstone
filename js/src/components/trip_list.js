@@ -10,8 +10,11 @@ class TripList extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/trips`, {
+    const user_id = this.props.user_id;
+
+    fetch(`http://localhost:3000/users/${user_id}/trips`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },

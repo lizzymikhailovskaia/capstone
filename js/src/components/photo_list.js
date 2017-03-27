@@ -19,6 +19,7 @@ class PhotoList extends React.Component {
 
     fetch(`http://localhost:3000/locations/${id}/photos`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },

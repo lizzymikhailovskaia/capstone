@@ -1,33 +1,20 @@
 require 'unirest'
 
 class TripsController < ApplicationController
-  # before_action :find_blog, only: [:show, :edit, :update, :destroy]
-  # before_action :check_owner!, only: [:edit, :update, :destroy]
-  # before_action :authenticate_user!, only: [:create, :new]
-  #
-  # #TODO: remove it
-  def current_user
-    User.first
-  end
-
-  def index
-    trips = Trip.all
-    render json: trips
-  end
+  before_action :find_record!, only: [:show, :update, :destroy, :locations, :comments]
+  before_action :check_owner!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   def show
-    trip = Trip.find(params[:id])
-    render json: trip
+    render json: @trip
   end
 
   def locations
-    trip = Trip.find(params[:id])
-    render json: trip.locations
+    render json: @trip.locations
   end
 
   def comments
-    trip = Trip.find(params[:id])
-    render json: trip.comments.to_json(include: :user)
+    render json: @trip.comments.to_json(include: :user)
   end
 
   def create
@@ -59,8 +46,6 @@ class TripsController < ApplicationController
   end
 
   def update
-    @trip = Trip.find(params[:id])
-
     photo_url = @trip.photo
     unless params[:photo] == 'null'
       response = Unirest.post(
@@ -89,18 +74,17 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @trip = Trip.find(params[:id])
     @trip.destroy
     render :nothing => true, :status => 200
   end
 
- # private
- # #
- # def check_owner!
- #   redirect_to '/' unless current_user && current_user.id == @trip.user_id
- # end
+  private
 
- # def find_blog
- #    @trip = Trip.find_by(id: params[:id])
- # end
+  def check_owner!
+    unauthorized unless current_user && current_user.id == @trip.user_id
+  end
+
+  def find_record!
+    @trip = Trip.find(params[:id])
+  end
 end
