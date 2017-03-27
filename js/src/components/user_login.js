@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import LoginForm from './login_form';
 
-class UserSignup extends React.Component {
-  handleSuccess() {
+class UserLogin extends React.Component {
+  handleSuccess(user) {
+    localStorage.setItem('user_id', user.id);
+    localStorage.setItem('user_name', user.name);
     this.context.router.push('/');
   }
 
@@ -21,13 +23,13 @@ class UserSignup extends React.Component {
       credentials: "include"
     }).then( (res) => {
       if (res.ok) {
-        _this.handleSuccess();
+        return res.json();
       } else {
         alert("Oops!");
       }
     }, (e) => {
       alert("Error submitting form!");
-    });
+    }).then( json => _this.handleSuccess(json.user) );
   }
 
   render() {
@@ -41,8 +43,8 @@ class UserSignup extends React.Component {
 }
 
 // if router is needed
-UserSignup.contextTypes = {
+UserLogin.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default UserSignup;
+export default UserLogin;

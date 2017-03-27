@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import PhotoList from './components/photo_list';
 import Home from './components/home';
+import Menu from './components/menu';
 import User from './components/user';
 import UserSignup from './components/user_signup';
 import UserLogin from './components/user_login';
@@ -22,7 +23,9 @@ class App extends Component {
   render() {
     return(
       <div>
-        <div>hi</div>
+        <div>
+          <Menu/>
+        </div>
         {this.props.children}
       </div>
     );
