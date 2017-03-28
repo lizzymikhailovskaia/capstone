@@ -37,7 +37,7 @@ class TripList extends React.Component {
     });
 
     return (
-      <div className="row">
+      <div className="list row">
        {tripItems}
       </div>
     );

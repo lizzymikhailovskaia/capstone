@@ -1,10 +1,16 @@
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../node_modules/font-awesome/css/font-awesome.css";
+import "../style/normalize.css";
+import "../style/set1.css";
+import "../style/style.css";
+import '../style/app.css';
+
 import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import PhotoList from './components/photo_list';
 import Home from './components/home';
-import Menu from './components/menu';
 import User from './components/user';
 import UserSignup from './components/user_signup';
 import UserLogin from './components/user_login';
@@ -14,23 +20,8 @@ import LocationEdit from './components/location_edit';
 import LocationCreate from './components/location_create';
 import Trip from './components/trip';
 import Location from './components/location';
+import App from './app';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return(
-      <div>
-        <div>
-          <Menu/>
-        </div>
-        {this.props.children}
-      </div>
-    );
-  }
-}
 
 //Take this component's generate HTML and put it on the page (in the DOM)
 ReactDOM.render((

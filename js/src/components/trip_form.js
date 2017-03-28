@@ -50,32 +50,32 @@ class TripForm extends React.Component {
   render() {
     return (
       <form onSubmit={ this.handleFormSubmit }>
-        <div>
+        <div className="form-group">
           <label>Trip name: </label>
-          <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>Your trip description</label>
-          <textarea name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
+          <textarea className="form-control" name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
         </div>
-        <div>
+        <div className="form-group">
           <label>The starting day of your trip </label>
-          <input type="text" name="start_date" value={ this.state.start_date } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="start_date" value={ this.state.start_date } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>The last day of your trip</label>
-          <input type="text" name="end_date" value={ this.state.end_date } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="end_date" value={ this.state.end_date } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>Public</label>
-          <input type="checkbox" name="public" checked={ this.state.public } onChange={ this.handleChange } />
+          <input className="form-control" type="checkbox" name="public" checked={ this.state.public } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>Photo</label>
-          <input type="file" name="photo" id="photo" accept="image/*;capture=camera" />
+          <input className="form-control" type="file" name="photo" id="photo" accept="image/*;capture=camera" />
         </div>
 
-        <input type="submit" value="Submit" />
+        <input className="btn btn-primary" type="submit" value="Submit" />
       </form>
     );
   }

@@ -1,0 +1,36 @@
+.nav-tabs > li > a.active {
+    color: #fff;
+    cursor: default;
+    background-color: #36CBD4;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #36CBD4 !important;
+}
+
+.hello{
+  padding: 20px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+body {
+  margin-top: 74px;
+}
+
+.avatar img {
+  width: 100%;
+}
+
+.list {
+  margin-top: 10px;
+}
+.nav-tabs > li > a.logo {
+    font-weight: bolder;
+    font-size: 16px;
+    font-style: italic;
+    color: #95DEE3;
+}

@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
      session[:user_id] = user.id
-     flash[:success] = 'Successfully logged in!'
      render :json => { user: user }, :status => 200
     else
-     flash[:warning] = 'Invalid email or password!'
-     render :nothing => true, :status => 400
+     render :json => {
+       message: 'Invalid email or password!'
+     }, :status => 400
     end
   end
 

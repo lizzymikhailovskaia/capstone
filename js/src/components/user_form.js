@@ -50,32 +50,32 @@ class UserForm extends React.Component {
 render() {
   return (
     <form onSubmit={ this.handleFormSubmit }>
-      <div>
+      <div className="form-group">
         <label>Name</label>
-        <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+        <input className="form-control" type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
       </div>
-      <div>
+      <div className="form-group">
         <label>Email</label>
-        <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
+        <input className="form-control" type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
       </div>
-      <div>
+      <div className="form-group">
         <label>Password</label>
-        <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
+        <input className="form-control" type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
       </div>
-      <div>
+      <div className="form-group">
         <label>BIO</label>
-        <input type="text" name="bio" value={ this.state.bio } onChange={ this.handleChange } />
+        <input className="form-control" type="text" name="bio" value={ this.state.bio } onChange={ this.handleChange } />
       </div>
-      <div>
+      <div className="form-group">
         <label>Photo</label>
-        <input type="file" name="photo" id="photo" accept="image/*;capture=camera" />
+        <input className="form-control" type="file" name="photo" id="photo" accept="image/*;capture=camera" />
       </div>
-      <div>
+      <div className="form-group">
         <label>Public</label>
-        <input type="checkbox" name="public" checked={ this.state.public } onChange={ this.handleChange } />
+        <input className="form-control" type="checkbox" name="public" checked={ this.state.public } onChange={ this.handleChange } />
       </div>
 
-      <input type="submit" value="Submit"/>
+      <input className="btn btn-primary" type="submit" value="Submit"/>
     </form>
     );
   }

@@ -39,11 +39,11 @@ class CommentForm extends React.Component {
   render() {
     return (
       <form onSubmit={ this.handleFormSubmit }>
-        <div>
+        <div className="form-group">
           <label>Text</label>
-          <textarea name="text" value={ this.state.text } onChange={ this.handleChange }/>
+          <textarea className="form-control" name="text" value={ this.state.text } onChange={ this.handleChange }/>
         </div>
-        <input type="submit" value="Submit" />
+        <input className="btn btn-primary" type="submit" value="Submit" />
       </form>
     );
   }

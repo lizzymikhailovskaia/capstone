@@ -7,9 +7,9 @@ const TripInfo = ({trip}) => {
       <p>{trip.description}</p>
       <p>{trip.start_date}</p>
       <p>{trip.end_date}</p>
-      <a href={ `/trips/${trip.id}` } className="thumbnail">
+      <div className="thumbnail">
         <img src={ trip.photo } alt="..."/>
-      </a>
+      </div>
     </div>
   );
 };

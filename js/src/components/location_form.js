@@ -45,27 +45,27 @@ class LocationForm extends React.Component {
   render() {
     return (
       <form onSubmit={ this.handleFormSubmit }>
-        <div>
+        <div className="form-group">
           <label>Name: </label>
-          <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>Your location description</label>
-          <textarea name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
+          <textarea className="form-control" name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
         </div>
-        <div>
+        <div className="form-group">
           <label>Your trip address</label>
-          <textarea name="adress" value={ this.state.adress } onChange={ this.handleChange }></textarea>
+          <textarea className="form-control" name="adress" value={ this.state.adress } onChange={ this.handleChange }></textarea>
         </div>
-        <div>
+        <div className="form-group">
           <label>The starting day </label>
-          <input type="text" name="start_date" value={ this.state.start_date } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="start_date" value={ this.state.start_date } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>The last day </label>
-          <input type="text" name="end_date" value={ this.state.end_date } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="end_date" value={ this.state.end_date } onChange={ this.handleChange } />
         </div>
-        <input type="submit" value="Submit" />
+        <input  className="btn btn-primary" type="submit" value="Submit" />
       </form>
     );
   }

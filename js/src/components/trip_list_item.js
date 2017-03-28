@@ -3,17 +3,18 @@ import {Link} from 'react-router';
 
 const TripListItem = ({trip}) => {
   return (
-    <div className="col-xs-6 col-md-3">
-      <p>
-        <Link to={`/trips/${trip.id}`}>
-          <strong>{trip.name}</strong>
+    <div className="col-sm-6 col-md-4">
+      <div className="well">
+        <div>
+          <Link to={`/trips/${trip.id}`}>
+            <strong>{trip.name}</strong>
+          </Link>
+        </div>
+        <Link to={`/trips/${trip.id}`} className="thumbnail">
+          <img src={ trip.photo } alt="..."/>
         </Link>
-      </p>
-      <p>{trip.start_date}</p>
-      <p>{trip.end_date}</p>
-      <Link to={`/trips/${trip.id}`} className="thumbnail">
-        <img src={ trip.photo } alt="..."/>
-      </Link>
+        <div>Date: {trip.start_date} - {trip.end_date}</div>
+      </div>
     </div>
   );
 };

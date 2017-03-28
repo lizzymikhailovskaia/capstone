@@ -38,15 +38,15 @@ class LoginForm extends React.Component {
 render() {
   return (
     <form onSubmit={ this.handleFormSubmit }>
-      <div>
+      <div className="form-group">
         <label>Email</label>
-        <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
+        <input className="form-control" type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
       </div>
-      <div>
+      <div className="form-group">
         <label>Password</label>
-        <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
+        <input className="form-control" type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
       </div>
-      <input type="submit" value="Log in"/>
+      <input className="btn btn-primary" type="submit" value="Log in"/>
     </form>
     );
   }
