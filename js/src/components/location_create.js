@@ -20,7 +20,8 @@ class LocationCreate extends React.Component {
     fetch("http://localhost:3000/locations",{
       method: "POST",
       headers: {},
-      body: formData
+      body: formData,
+      credentials: "include"
     }).then((res) => {
       if (res.ok) {
         component.handleSuccess();

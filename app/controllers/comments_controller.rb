@@ -1,22 +1,7 @@
 class CommentsController < ApplicationController
-  # #TODO: remove it
-  def current_user
-    User.first
-  end
-
-  def index
-    comments = Comments.all
-    render json: comments
-  end
-
-  def show
-    comment = Comment.find(params[:id])
-    render json: comment
-  end
-
-  def new
-    @comment = Comment.new
-  end
+  before_action :find_record!, only: [:update, :destroy]
+  before_action :check_owner!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     @comment = Comment.create(
@@ -34,7 +19,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @comment.update(
       text: params[:text],
     )
@@ -47,8 +31,17 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-   @comment = Comment.find(params[:id])
    @comment.destroy
    render :nothing => true, :status => 200
+  end
+
+  private
+
+  def check_owner!
+    unauthorized unless current_user && current_user.id == @comment.user_id
+  end
+
+  def find_record!
+    @comment = Comment.find(params[:id])
   end
 end

@@ -5,7 +5,8 @@ class TripEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       trip: null
+        trip: null,
+        processing: false
      };
   }
 
@@ -14,6 +15,7 @@ class TripEdit extends React.Component {
 
     fetch(`http://localhost:3000/trips/${id}`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },
@@ -27,12 +29,13 @@ class TripEdit extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/trips');
+    this.context.router.push('/');
   }
 
   handleSubmit = (data) => {
-    const id = this.props.params.id;
+    this.setState({ processing: true });
 
+    const id = this.props.params.id;
     const _this = this;
 
     let formData = new FormData();
@@ -46,11 +49,14 @@ class TripEdit extends React.Component {
       body: formData
     }).then( (res) => {
       if (res.ok) {
+        this.setState({ processing: false });
         _this.handleSuccess();
       } else {
+        this.setState({ processing: false });
         alert("Oops!");
       }
     }, (e) => {
+      this.setState({ processing: false });
       alert("Error submitting form!");
     });
   }
@@ -61,10 +67,19 @@ class TripEdit extends React.Component {
     if (!trip) {
       return (<div>Loading...</div>);
     } else {
+      const processing = this.state.processing;
+
+      let form = '';
+      if (!processing) {
+        form = <TripForm data={trip} onFormSubmit={this.handleSubmit} />;
+      } else {
+        form = <div>loading...</div>;
+      }
+
       return (
         <div>
           <h1>Edit Trip</h1>
-          <TripForm data={trip} onFormSubmit={this.handleSubmit} />
+          {form}
         </div>
       );
     }

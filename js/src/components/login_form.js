@@ -1,14 +1,11 @@
 import React from 'react';
 
-class UserForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.data ? this.props.data : {
-      name: "",
       email: "",
-      password: "",
-      bio: "",
-      public: false
+      password: ""
     };
   }
 
@@ -17,21 +14,12 @@ class UserForm extends React.Component {
     e.preventDefault();
 
     let data = {};
-    data.name = this.state.name;
     data.email = this.state.email;
     data.password = this.state.password;
-    data.bio = this.state.bio;
-    data.public = this.state.public;
-
-    const files = document.getElementById('photo').files;
-    if (files.length > 0) {
-      data.photo = files[0];
-    } else {
-      data.photo = null;
-    }
 
     //simple validation
-    if (!data.name) {
+    if (!data.email || !data.password) {
+      alert('email and password required!');
       return;
     }
 
@@ -51,10 +39,6 @@ render() {
   return (
     <form onSubmit={ this.handleFormSubmit }>
       <div>
-        <label>Name</label>
-        <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
-      </div>
-      <div>
         <label>Email</label>
         <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
       </div>
@@ -62,23 +46,10 @@ render() {
         <label>Password</label>
         <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
       </div>
-      <div>
-        <label>BIO</label>
-        <input type="text" name="bio" value={ this.state.bio } onChange={ this.handleChange } />
-      </div>
-      <div>
-        <label>Photo</label>
-        <input type="file" name="photo" id="photo" accept="image/*;capture=camera" />
-      </div>
-      <div>
-        <label>Public</label>
-        <input type="checkbox" name="public" checked={ this.state.public } onChange={ this.handleChange } />
-      </div>
-
-      <input type="submit" value="Submit"/>
+      <input type="submit" value="Log in"/>
     </form>
     );
   }
 }
 
-export default UserForm;
+export default LoginForm;

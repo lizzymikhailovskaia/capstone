@@ -24,7 +24,8 @@ class CommentCreate extends React.Component {
     fetch("http://localhost:3000/comments", {
       method: "POST",
       headers: {},
-      body: formData
+      body: formData,
+      credentials: "include"
     }).then( (res) => {
       if (res.ok) {
         _this.handleSuccess();

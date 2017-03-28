@@ -14,6 +14,7 @@ class LocationEdit extends React.Component {
 
     fetch(`http://localhost:3000/locations/${id}`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },
@@ -27,7 +28,7 @@ class LocationEdit extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/locations');
+    this.context.router.goBack();
   }
 
   handleSubmit = (data) => {
@@ -43,7 +44,8 @@ class LocationEdit extends React.Component {
     fetch(`http://localhost:3000/locations/${id}`, {
       method: "PUT",
       headers: {},
-      body: formData
+      body: formData,
+      credentials: "include"
     }).then( (res) => {
       if (res.ok) {
         _this.handleSuccess();

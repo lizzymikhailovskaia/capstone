@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import TripForm from './trip_form';
+import UserForm from './user_form';
 
-class TripCreate extends React.Component {
+class UserSignup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,7 @@ class TripCreate extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/');
+    this.context.router.push('/login');
   }
 
   handleSubmit = (data) => {
@@ -23,7 +23,7 @@ class TripCreate extends React.Component {
       formData.append(key, value);
     }
 
-    fetch("http://localhost:3000/trips", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {},
       body: formData,
@@ -47,14 +47,14 @@ class TripCreate extends React.Component {
 
     let form = '';
     if (!processing) {
-      form = <TripForm onFormSubmit={this.handleSubmit} />;
+      form = <UserForm onFormSubmit={this.handleSubmit} />;
     } else {
       form = <div>loading...</div>;
     }
 
     return (
       <div>
-        <h1>Create Trip</h1>
+        <h1>Create</h1>
         {form}
       </div>
     );
@@ -62,8 +62,8 @@ class TripCreate extends React.Component {
 }
 
 // if router is needed
-TripCreate.contextTypes = {
+UserSignup.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default TripCreate;
+export default UserSignup;

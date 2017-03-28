@@ -18,6 +18,7 @@ class TaskList extends React.Component {
     const location_id = this.props.location_id;
     fetch(`http://localhost:3000/locations/${location_id}/tasks`, {
       method: 'GET',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
       },
