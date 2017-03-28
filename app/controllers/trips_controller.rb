@@ -1,89 +1,90 @@
-class TripsController < ApplicationController
-  before_action :find_blog, only: [:show, :edit, :update, :destroy]
-  before_action :check_owner!, only: [:edit, :update, :destroy]
-  # before_action :authenticate_user!, only: [:create, :new]
+require 'unirest'
 
-  #TODO: remove it
-  def current_user
-    Users.first
+class TripsController < ApplicationController
+  before_action :find_record!, only: [:show, :update, :destroy, :locations, :comments]
+  before_action :check_owner!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create]
+
+  def show
+    render json: @trip.to_json(include: :user)
   end
 
- def index
-   if session[:count] == nil
-     session[:count] = 0
-   end
-   session[:count] += 1
-   @visit_count = session[:count]
-   @trips = Trip.all
-   if params[:category]
-     @trips = Category.find_by(name: params[:category]).trips
-   end
- end
+  def locations
+    render json: @trip.locations
+  end
 
- # def new
- # end
+  def comments
+    render json: @trip.comments.to_json(include: :user)
+  end
 
- def create
-   @trip = Trip.create(
-     description: params[:description],
-     name: params[:name],
-     public: params[:public],
-     end_date: params[:end_date],
-     start_date: params[:start_date],
-     photo: params[:photo],
-     user_id: current_user.id
-     )
+  def create
+    photo_url = nil
+    unless params[:photo] == 'null'
+      response = Unirest.post(
+        "http://uploads.im/api?upload",
+        parameters: {
+          file: params[:photo]
+          }
+      ).body
+      photo_url = response["data"]["img_url"]
+    end
 
-   if @trip.save
-     flash[:success] = "Trip  Created"
-     redirect_to "/trips/#{@trip.id}"
-   else
-     render :new
-   end
- end
+    @trip = Trip.create(
+      description: params[:description],
+      name: params[:name],
+      public: params[:public],
+      end_date: params[:end_date],
+      start_date: params[:start_date],
+      photo: photo_url,
+      user_id: current_user.id
+    )
+    if @trip.save
+      render :nothing => true, :status => 200
+    else
+      render :nothing => true, :status => 400
+    end
+  end
 
- def show
- end
+  def update
+    photo_url = @trip.photo
+    unless params[:photo] == 'null'
+      response = Unirest.post(
+       "http://uploads.im/api?upload",
+       parameters: {
+         file: params[:photo]
+         }
+      ).body
+      photo_url = response["data"]["img_url"]
+    end
 
- # def edit
- # end
+    @trip.update(
+      description: params[:description],
+      name: params[:name],
+      public: params[:public],
+      end_date: params[:end_date],
+      start_date: params[:start_date],
+      photo: photo_url,
+      user_id: current_user.id
+    )
+    if @trip.save
+      render :nothing => true, :status => 200
+    else
+      render :nothing => true, :status => 400
+    end
+  end
 
- def update
-   @trip.update(
-       description: params[:description],
-       name: params[:name],
-       public: params[:public],
-       end_date: params[:end_date],
-       start_date: params[:start_date],
-       photo: params[:photo],
-       user_id: current_user.id
-       )
+  def destroy
+    @trip.destroy
+    render :nothing => true, :status => 200
+  end
 
+  private
 
-   if @trip.save
-     flash[:success] = "Trip updated"
-     redirect_to "/trips/#{@trip.id}"
-   else
-     render :edit
-   end
- end
+  def check_owner!
+    unauthorized unless current_user && current_user.id == @trip.user_id
+  end
 
- def destroy
-   @trip.destroy
-   flash[:warning] = "Trip Destroyed"
-   redirect_to "/"
- end
-
- def search
- end
-
- private
-
- def check_owner!
-   redirect_to '/' unless current_user && current_user.id == @trip.user_id
- end
-
- def find_blog
-    @trip = Trip.find_by(id: params[:id])
- end
+  def find_record!
+    @trip = Trip.find(params[:id])
+  end
 end

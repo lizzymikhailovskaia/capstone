@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -28,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
-
+gem 'unirest'
 group :test do
   gem 'rake'
 end

@@ -21,14 +21,16 @@ RSpec.describe Comment, :type => :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without an trip_id" do
+    it "is not valid without an trip_id and location_id" do
       subject.trip_id = nil
+      subject.location_id = nil
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without an location_id" do
+    it "is valid with trip_id or location_id" do
+      subject.trip_id = 1
       subject.location_id = nil
-      expect(subject).to_not be_valid
+      expect(subject).to be_valid
     end
 
     it "is not valid without an user_id" do

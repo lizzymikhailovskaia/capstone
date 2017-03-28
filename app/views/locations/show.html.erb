@@ -1,0 +1,20 @@
+<p>Name: <%= @location.name %></p>
+<p>Adress: <%= @location.adress %></p>
+<p>Description: <%= @location.description %></p>
+<p>Position: <%= @location.position %></p>
+
+  <!-- <p>Directions:
+    <ol>
+      <% @recipe.directions_list.each do |direction| %>
+        <li><%= direction %></li>
+      <% end %>
+    </ol>
+  </p>
+  <p>Prep time: <%= @recipe.friendly_prep_time %></p>
+  <p>Created at: <%= @recipe.friendly_created_at %></p> -->
+
+  <a class="btn btn-default" href="/locations/<%= @location.id %>/edit" role="button">Edit</a>
+
+  <%= form_tag "/locations/#{@location.id}", method: :delete do %>
+  <input class="btn btn-default" type="submit" value="Destroy location ">
+  <% end %>
