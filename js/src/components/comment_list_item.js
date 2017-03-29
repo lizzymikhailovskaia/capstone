@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import CommentEdit from './comment_edit';
+import dateFormat from 'dateformat';
 
 class CommentListItem extends React.Component {
   constructor(props) {
@@ -27,12 +28,14 @@ class CommentListItem extends React.Component {
         <CommentEdit onSubmit={this.onSubmit} comment={comment}/>
 
     } else {
+      const date = dateFormat(comment.created_at, "fullDate");
+
       view =
         <div>
           <div>
             <strong>{comment.user.name}</strong>
             <span> said at </span>
-            <i>{comment.created_at}</i>:
+            <i>{date}</i>
           </div>
           <div>{comment.text}</div>
           <button className="btn btn-primary" type="submit" value="Edit" onClick={this.startEditing}>Edit</button>

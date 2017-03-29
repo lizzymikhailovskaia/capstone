@@ -9,11 +9,11 @@ Trip.create(user_id: 2, description: "La", name: "cool_trip" , start_date: 2, en
 Trip.create(user_id: 3, description: "DS", name: "cvery_cool_trip" , start_date: 2, end_date: 5, public: false )
 Trip.create(user_id: 4, description: "NY", name: "super-cool-trip" , start_date: 2, end_date: 5, public: true )
 
-Location.create(name: "cool plase", adress: "near old tree", description:"no", trip_id: 1, start_date: 1, end_date: 7)
-Location.create(name: "cool plase1", adress: "near new tree", description:"no", trip_id: 2, start_date: 1, end_date: 7)
-Location.create(name: "cool plase2", adress: "near old car", description:"vo", trip_id: 3, start_date: 1, end_date: 7)
-Location.create(name: "cool plase3", adress: "near new tree", description:"no", trip_id: 4, start_date: 1, end_date: 7)
-Location.create(name: "cool plase4", adress: "near old poo", description:"no", trip_id: 5, start_date: 1, end_date: 7)
+Location.create(name: "cool plase", address: "near old tree", description:"no", trip_id: 1, start_date: 1, end_date: 7)
+Location.create(name: "cool plase1", address: "near new tree", description:"no", trip_id: 2, start_date: 1, end_date: 7)
+Location.create(name: "cool plase2", address: "near old car", description:"vo", trip_id: 3, start_date: 1, end_date: 7)
+Location.create(name: "cool plase3", address: "near new tree", description:"no", trip_id: 4, start_date: 1, end_date: 7)
+Location.create(name: "cool plase4", address: "near old poo", description:"no", trip_id: 5, start_date: 1, end_date: 7)
 
 
 Task.create(name: "see the tree", location_id: 1, position: "rigth")
