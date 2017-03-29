@@ -10,7 +10,7 @@ class TripCreate extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/');
+    this.context.router.goBack();
   }
 
   handleSubmit = (data) => {

@@ -5,7 +5,7 @@ class LocationForm extends React.Component {
     super(props);
     this.state = this.props.data ? this.props.data : {
       name: "",
-      adress: "",
+      address: "",
       description: "",
       start_date: "",
       end_date: "",
@@ -19,7 +19,7 @@ class LocationForm extends React.Component {
 
     let data = {};
     data.name = this.state.name;
-    data.adress = this.state.adress;
+    data.address = this.state.address;
     data.description = this.state.description;
     data.start_date = this.state.start_date;
     data.end_date = this.state.end_date;
@@ -46,7 +46,7 @@ class LocationForm extends React.Component {
     return (
       <form onSubmit={ this.handleFormSubmit }>
         <div className="form-group">
-          <label>Name: </label>
+          <label>Name</label>
           <input className="form-control" type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
         </div>
         <div className="form-group">
@@ -54,8 +54,8 @@ class LocationForm extends React.Component {
           <textarea className="form-control" name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
         </div>
         <div className="form-group">
-          <label>Your trip address</label>
-          <textarea className="form-control" name="adress" value={ this.state.adress } onChange={ this.handleChange }></textarea>
+          <label>Your location address</label>
+          <textarea className="form-control" name="address" value={ this.state.address } onChange={ this.handleChange }></textarea>
         </div>
         <div className="form-group">
           <label>The starting day </label>

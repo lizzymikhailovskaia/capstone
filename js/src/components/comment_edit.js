@@ -47,7 +47,7 @@ class CommentEdit extends React.Component {
     } else {
       return (
         <div>
-          <h1>Edit Comment</h1>
+          <h1>Edit your Comment</h1>
           <CommentForm data={comment} onFormSubmit={this.handleSubmit} />
         </div>
       );

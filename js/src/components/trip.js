@@ -36,17 +36,15 @@ class Trip extends React.Component {
     let editLink = '';
     let createLocationLink = '';
     if (trip && trip.user && user_id == trip.user.id) {
-      editLink = <Link to={`/trips/${trip.id}/edit`}>Edit trip</Link>;
-      createLocationLink = <Link to={`/trips/${trip.id}/new-location`}>Create location</Link>;
+      editLink = <Link className="btn btn-primary" to={`/trips/${trip.id}/edit`}>Edit trip</Link>;
+      createLocationLink = <Link className="btn btn-primary" to={`/trips/${trip.id}/new-location`}>Create location</Link>;
     }
 
     return (
       <div>
-        {editLink}
-        <div>
-          <TripInfo trip={trip}></TripInfo>
-        </div>
-        {createLocationLink}
+        <TripInfo trip={trip}></TripInfo>
+        <div>{editLink}</div>
+        <div>{createLocationLink}</div>
         <LocationList trip_id={this.props.params.id}></LocationList>
         <CommentList type="trip" id={this.props.params.id}></CommentList>
       </div>

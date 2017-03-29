@@ -10,7 +10,7 @@ const LocationListItem = ({location}) => {
           <strong>{location.name}</strong>
         </Link>
       </p>
-      <p>{location.adress}</p>
+      <p>{location.address}</p>
       <p>{location.description}</p>
       <p>{location.start_date}</p>
       <p>{location.end_date}</p>

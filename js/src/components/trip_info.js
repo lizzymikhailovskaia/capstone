@@ -3,12 +3,11 @@ import React from 'react';
 const TripInfo = ({trip}) => {
   return (
     <div>
-      <p>{trip.name}</p>
-      <p>{trip.description}</p>
-      <p>{trip.start_date}</p>
-      <p>{trip.end_date}</p>
-      <div className="thumbnail">
-        <img src={ trip.photo } alt="..."/>
+      <h1>{trip.name}</h1>
+      <div>{trip.description}</div>
+      <div>Dates: {trip.start_date} - {trip.end_date}</div>
+      <div>
+        <img className="img-rounded" src={ trip.photo } alt="..."/>
       </div>
     </div>
   );

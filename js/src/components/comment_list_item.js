@@ -29,13 +29,13 @@ class CommentListItem extends React.Component {
     } else {
       view =
         <div>
-          <p>
+          <div>
             <strong>{comment.user.name}</strong>
             <span> said at </span>
             <i>{comment.created_at}</i>:
-          </p>
-          <p>{comment.text}</p>
-          <button onClick={this.startEditing}>Edit</button>
+          </div>
+          <div>{comment.text}</div>
+          <button className="btn btn-primary" type="submit" value="Edit" onClick={this.startEditing}>Edit</button>
         </div>
       ;
     }
