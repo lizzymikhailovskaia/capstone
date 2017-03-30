@@ -30,7 +30,7 @@ class TaskListItem extends React.Component {
       view =
         <div>
           <p>{task.name}</p>
-          <button onClick={this.startEditing}>Edit</button>
+          <button  className="btn btn-primary" onClick={this.startEditing}>Edit</button>
         </div>
       ;
     }

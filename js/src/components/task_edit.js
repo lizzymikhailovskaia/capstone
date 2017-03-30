@@ -48,7 +48,7 @@ class TaskEdit extends React.Component {
       return (
         <div>
           <h1>Edit Task</h1>
-          <TaskForm data={task} onFormSubmit={this.handleSubmit} />
+          <TaskForm className="btn btn-primary" data={task} onFormSubmit={this.handleSubmit} />
         </div>
       );
     }

@@ -37,6 +37,7 @@ class LoginForm extends React.Component {
 
 render() {
   return (
+    <div>
     <form onSubmit={ this.handleFormSubmit }>
       <div className="form-group">
         <label>Email</label>
@@ -46,8 +47,10 @@ render() {
         <label>Password</label>
         <input className="form-control" type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
       </div>
-      <input className="btn btn-primary" type="submit" value="Log in"/>
+       <input className="btn btn-primary" type="submit" value="Log in"/>
     </form>
+    <img className="banner" src="http://www.justrenttoown.com/blog/wp-content/uploads/2015/06/hawaii-backgound1.jpg"/>
+  </div>
     );
   }
 }

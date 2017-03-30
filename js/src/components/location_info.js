@@ -6,11 +6,11 @@ const Place = ({ text }) => <div className="marker">{text}</div>;
 const LocationInfo = ({location}) => {
   return (
     <div>
-      <div>{location.name}</div>
+      <div><strong>{location.name}</strong></div>
+      <div>{location.start_date} - {location.end_date}</div>
       <div>{location.description}</div>
       <div>{location.address}</div>
-      <div>{location.start_date} - {location.end_date}</div>
-
+    
       <div className="map">
         <GoogleMap
           center={[location.latitude, location.longitude]}

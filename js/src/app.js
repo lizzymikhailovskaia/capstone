@@ -24,14 +24,15 @@ class App extends Component {
       	</div>
 
       	<footer>
-
+          
       		<div className="last-div">
       			<div className="container">
       				<div className="row">
       					<div className="copyright">
                               <div className="credits">
-                                  WellTrave
+                                  WellTravel
                               </div>
+
       					</div>
       				</div>
       			</div>
