@@ -22,9 +22,9 @@ class App extends Component {
       	<div className="container">
       		{this.props.children}
       	</div>
-
+        
       	<footer>
-          
+
       		<div className="last-div">
       			<div className="container">
       				<div className="row">

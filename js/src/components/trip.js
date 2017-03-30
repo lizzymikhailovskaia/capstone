@@ -42,6 +42,7 @@ class Trip extends React.Component {
 
     return (
       <div>
+        <div><h1>Info about your great Trip!</h1></div>
         <TripInfo trip={trip}></TripInfo>
         <div>{editLink}</div>
         <div>{createLocationLink}</div>

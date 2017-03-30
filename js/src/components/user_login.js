@@ -5,7 +5,7 @@ class UserLogin extends React.Component {
   handleSuccess(user) {
     localStorage.setItem('user_id', user.id);
     localStorage.setItem('user_name', user.name);
-    this.context.router.push('/');
+    this.context.router.push(`/users/${user.id}`);
   }
 
   handleSubmit = (data) => {

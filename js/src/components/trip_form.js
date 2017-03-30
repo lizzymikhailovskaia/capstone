@@ -74,7 +74,6 @@ class TripForm extends React.Component {
           <label>Photo</label>
           <input className="form-control" type="file" name="photo" id="photo" accept="image/*;capture=camera" />
         </div>
-
         <input className="btn btn-primary" type="submit" value="Submit" />
       </form>
     );
