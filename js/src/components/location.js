@@ -36,16 +36,16 @@ class Location extends React.Component {
     if (location && location.trip && location.trip.user
       && location.trip.user.id == user_id)
     {
-      editLink = <Link to={`/locations/${location.id}/edit`}>Edit location</Link>;
+      editLink = <Link className="btn btn-primary" to={`/locations/${location.id}/edit`}>Edit location</Link>;
     }
 
     return (
       <div>
-        {editLink}
         <div>
           <LocationInfo location={location}></LocationInfo>
         </div>
-        <Link to={`/locations/${location.id}/photos`}>Photo Gallery</Link>
+        <div>{editLink}</div>
+        <Link className="btn btn-primary" to={`/locations/${location.id}/photos`}>Photo Gallery</Link>
         <TaskList location_id={this.props.params.id}></TaskList>
         <CommentList type="location" id={this.props.params.id}></CommentList>
       </div>

@@ -13,19 +13,17 @@ class LocationsController < ApplicationController
 
     @location = Location.create(
       name: params[:name],
-      adress: params[:adress],
+      address: params[:address],
       description: params[:description],
       trip_id: params[:trip_id],
       start_date: params[:start_date],
       end_date: params[:end_date],
-      position: params[:position],
-      lat: params[:lat],
-      ing: params[:ing]
+      position: params[:position]
     )
     if @location.save
       render :nothing => true, :status => 200
     else
-      render :nothing => true, :status => 400
+      render :json => @location.errors, :status => 400
     end
   end
 
@@ -44,13 +42,11 @@ class LocationsController < ApplicationController
   def update
     @location.update(
       name: params[:name],
-      adress: params[:adress],
+      address: params[:address],
       description: params[:description],
       start_date: params[:start_date],
       end_date: params[:end_date],
-      position: params[:position],
-      lat: params[:lat],
-      ing: params[:ing]
+      position: params[:position]
     )
     if @location.save
       render :nothing => true, :status => 200

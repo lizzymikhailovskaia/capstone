@@ -5,7 +5,7 @@ class LocationForm extends React.Component {
     super(props);
     this.state = this.props.data ? this.props.data : {
       name: "",
-      adress: "",
+      address: "",
       description: "",
       start_date: "",
       end_date: "",
@@ -19,7 +19,7 @@ class LocationForm extends React.Component {
 
     let data = {};
     data.name = this.state.name;
-    data.adress = this.state.adress;
+    data.address = this.state.address;
     data.description = this.state.description;
     data.start_date = this.state.start_date;
     data.end_date = this.state.end_date;
@@ -45,27 +45,27 @@ class LocationForm extends React.Component {
   render() {
     return (
       <form onSubmit={ this.handleFormSubmit }>
-        <div>
-          <label>Name: </label>
-          <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+        <div className="form-group">
+          <label>Name</label>
+          <input className="form-control" type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>Your location description</label>
-          <textarea name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
+          <textarea className="form-control" name="description" value={ this.state.description } onChange={ this.handleChange }></textarea>
         </div>
-        <div>
-          <label>Your trip address</label>
-          <textarea name="adress" value={ this.state.adress } onChange={ this.handleChange }></textarea>
+        <div className="form-group">
+          <label>Your location address</label>
+          <textarea className="form-control" name="address" value={ this.state.address } onChange={ this.handleChange }></textarea>
         </div>
-        <div>
+        <div className="form-group">
           <label>The starting day </label>
-          <input type="text" name="start_date" value={ this.state.start_date } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="start_date" value={ this.state.start_date } onChange={ this.handleChange } />
         </div>
-        <div>
+        <div className="form-group">
           <label>The last day </label>
-          <input type="text" name="end_date" value={ this.state.end_date } onChange={ this.handleChange } />
+          <input className="form-control" type="text" name="end_date" value={ this.state.end_date } onChange={ this.handleChange } />
         </div>
-        <input type="submit" value="Submit" />
+        <input  className="btn btn-primary" type="submit" value="Submit" />
       </form>
     );
   }

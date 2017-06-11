@@ -32,7 +32,7 @@ class User extends React.Component {
     const user_id = localStorage.getItem('user_id');
     let createLink = '';
     if (user_id == this.state.user.id) {
-      createLink = <Link to={`/trips/new`}>Create a trip</Link>;
+      createLink = <Link className="btn btn-primary" to={`/trips/new`}>Create a trip</Link>;
     }
 
     return (

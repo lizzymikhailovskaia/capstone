@@ -29,7 +29,7 @@ class TripEdit extends React.Component {
   }
 
   handleSuccess() {
-    this.context.router.push('/');
+    this.context.router.goBack();
   }
 
   handleSubmit = (data) => {
@@ -46,6 +46,7 @@ class TripEdit extends React.Component {
     fetch(`http://localhost:3000/trips/${id}`, {
       method: "PUT",
       headers: {},
+      credentials: "include",
       body: formData
     }).then( (res) => {
       if (res.ok) {

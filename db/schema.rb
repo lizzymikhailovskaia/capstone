@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303042418) do
+ActiveRecord::Schema.define(version: 20170329070305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +27,16 @@ ActiveRecord::Schema.define(version: 20170303042418) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
-    t.string   "adress"
     t.text     "description"
     t.integer  "trip_id"
-    t.integer  "start_date"
-    t.integer  "end_date"
     t.integer  "position"
-    t.integer  "lat"
-    t.integer  "ing"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -58,12 +58,12 @@ ActiveRecord::Schema.define(version: 20170303042418) do
     t.integer  "user_id"
     t.string   "description"
     t.string   "name"
-    t.integer  "start_date"
-    t.integer  "end_date"
     t.boolean  "public"
     t.string   "photo"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "users", force: :cascade do |t|

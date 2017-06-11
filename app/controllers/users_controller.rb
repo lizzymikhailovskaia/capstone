@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       name: params[:name],
       email: params[:email],
       photo: photo_url,
+      bio: params[:bio],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )

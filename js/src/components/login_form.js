@@ -37,17 +37,20 @@ class LoginForm extends React.Component {
 
 render() {
   return (
+    <div>
     <form onSubmit={ this.handleFormSubmit }>
-      <div>
+      <div className="form-group">
         <label>Email</label>
-        <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
+        <input className="form-control" type="email" name="email" value={ this.state.email } onChange={ this.handleChange } />
       </div>
-      <div>
+      <div className="form-group">
         <label>Password</label>
-        <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
+        <input className="form-control" type="password" name="password" value={ this.state.password } onChange={ this.handleChange } />
       </div>
-      <input type="submit" value="Log in"/>
+       <input className="btn btn-primary" type="submit" value="Log in"/>
     </form>
+    <img className="banner" src="http://www.justrenttoown.com/blog/wp-content/uploads/2015/06/hawaii-backgound1.jpg"/>
+  </div>
     );
   }
 }

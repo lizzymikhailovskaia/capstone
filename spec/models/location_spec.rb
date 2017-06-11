@@ -8,7 +8,7 @@ RSpec.describe Location, :type => :model do
       name: "china",
       start_date: 1,
       end_date: 11,
-      adress: "2bla"
+      address: "2bla"
     )
   }
 
