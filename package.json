@@ -1,0 +1,12 @@
+{
+  "name": "lizzy-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./js/index.js",
+  "engines": {
+    "node": "7.9.0"
+  },
+  "scripts": {
+    "build:client": "(cd js && npm run build:client)"
+  }
+}
