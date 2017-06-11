@@ -31,6 +31,7 @@
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
     "bootstrap": "^3.3.7",
+    "dateformat": "^2.0.0",
     "font-awesome": "^4.7.0",
     "google-map-react": "^0.23.0",
     "lodash": "^3.10.1",
