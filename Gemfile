@@ -27,8 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 gem 'unirest'
-
 group :test do
   gem 'rake'
 end
