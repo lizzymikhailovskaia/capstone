@@ -5,6 +5,8 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-RSpec::Core::RakeTask.new
+if %w(development test).include?(Rails.env)
+  RSpec::Core::RakeTask.new
 
-task :default => :spec
+  task :default => :spec
+end
