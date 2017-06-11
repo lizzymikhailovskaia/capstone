@@ -13,3 +13,4 @@
 /tmp
 /npm-debug.log
 /app/assets/webpack
+/public
