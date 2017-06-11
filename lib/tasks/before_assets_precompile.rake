@@ -1,5 +1,6 @@
 task :before_assets_precompile do
   # run a command which starts your packaging
+  system('mkdir -p ./app/assets/webpack')
   system('npm install && npm run build:client')
 end
 
