@@ -7,6 +7,7 @@
     "node": "7.9.0"
   },
   "scripts": {
+    "postinstall": "(cd js && npm install)",
     "build:client": "(cd js && npm run build:client)"
   }
 }
