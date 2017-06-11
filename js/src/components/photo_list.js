@@ -17,7 +17,7 @@ class PhotoList extends React.Component {
   loadData() {
     const id = this.props.params.id;
 
-    fetch(`http://localhost:3000/locations/${id}/photos`, {
+    fetch(`/locations/${id}/photos`, {
       method: 'GET',
       credentials: "include",
       headers: {

@@ -16,7 +16,7 @@ class TaskList extends React.Component {
 
   loadData() {
     const location_id = this.props.location_id;
-    fetch(`http://localhost:3000/locations/${location_id}/tasks`, {
+    fetch(`/locations/${location_id}/tasks`, {
       method: 'GET',
       credentials: "include",
       headers: {

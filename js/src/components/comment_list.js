@@ -23,7 +23,7 @@ class CommentList extends React.Component {
       resource = 'locations';
     }
 
-    fetch(`http://localhost:3000/${resource}/${id}/comments`, {
+    fetch(`/${resource}/${id}/comments`, {
       method: 'GET',
       credentials: "include",
       headers: {

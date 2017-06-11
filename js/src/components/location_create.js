@@ -17,7 +17,7 @@ class LocationCreate extends React.Component {
     }
     formData.append('trip_id', trip_id);
 
-    fetch("http://localhost:3000/locations",{
+    fetch("/locations",{
       method: "POST",
       headers: {},
       body: formData,

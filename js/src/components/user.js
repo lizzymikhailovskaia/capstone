@@ -13,7 +13,7 @@ class User extends React.Component {
 
   componentDidMount() {
     const id = this.props.params.id;
-    fetch(`http://localhost:3000/users/${id}`, {
+    fetch(`/users/${id}`, {
       method: 'GET',
       credentials: "include",
       headers: {

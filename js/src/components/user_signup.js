@@ -23,7 +23,7 @@ class UserSignup extends React.Component {
       formData.append(key, value);
     }
 
-    fetch("http://localhost:3000/users", {
+    fetch("/users", {
       method: "POST",
       headers: {},
       body: formData,

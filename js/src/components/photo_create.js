@@ -25,7 +25,7 @@ class PhotoCreate extends React.Component {
     }
     formData.append('location_id', location_id);
 
-    fetch("http://localhost:3000/photos", {
+    fetch("/photos", {
       method: "POST",
       headers: {},
       body: formData,

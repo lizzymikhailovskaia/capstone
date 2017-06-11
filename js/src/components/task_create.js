@@ -16,7 +16,7 @@ class TaskCreate extends React.Component {
     }
     formData.append('location_id', location_id);
 
-    fetch("http://localhost:3000/tasks", {
+    fetch("/tasks", {
       method: "POST",
       headers: {},
       body: formData,

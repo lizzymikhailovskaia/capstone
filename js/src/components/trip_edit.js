@@ -13,7 +13,7 @@ class TripEdit extends React.Component {
   componentDidMount() {
     const id = this.props.params.id;
 
-    fetch(`http://localhost:3000/trips/${id}`, {
+    fetch(`/trips/${id}`, {
       method: 'GET',
       credentials: "include",
       headers: {
@@ -43,7 +43,7 @@ class TripEdit extends React.Component {
       formData.append(key, value);
     }
 
-    fetch(`http://localhost:3000/trips/${id}`, {
+    fetch(`/trips/${id}`, {
       method: "PUT",
       headers: {},
       credentials: "include",

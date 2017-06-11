@@ -23,7 +23,7 @@ class TripCreate extends React.Component {
       formData.append(key, value);
     }
 
-    fetch("http://localhost:3000/trips", {
+    fetch("/trips", {
       method: "POST",
       headers: {},
       body: formData,

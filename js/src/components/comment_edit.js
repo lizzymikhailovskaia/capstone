@@ -23,7 +23,7 @@ class CommentEdit extends React.Component {
       formData.append(key, value);
     }
 
-    fetch(`http://localhost:3000/comments/${id}`, {
+    fetch(`/comments/${id}`, {
       method: "PUT",
       headers: {},
       body: formData,

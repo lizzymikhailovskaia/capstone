@@ -21,7 +21,7 @@ class CommentCreate extends React.Component {
       formData.append('location_id', id);
     }
 
-    fetch("http://localhost:3000/comments", {
+    fetch("/comments", {
       method: "POST",
       headers: {},
       body: formData,

@@ -14,7 +14,7 @@ class Trip extends React.Component {
 
   componentDidMount() {
     const id = this.props.params.id;
-    fetch(`http://localhost:3000/trips/${id}`, {
+    fetch(`/trips/${id}`, {
       method: 'GET',
       credentials: "include",
       headers: {

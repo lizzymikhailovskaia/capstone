@@ -14,7 +14,7 @@ class Location extends React.Component {
 
   componentDidMount() {
     const id = this.props.params.id;
-    fetch(`http://localhost:3000/locations/${id}`, {
+    fetch(`/locations/${id}`, {
       method: 'GET',
       credentials: "include",
       headers: {

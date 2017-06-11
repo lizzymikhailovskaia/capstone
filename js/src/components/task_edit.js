@@ -23,7 +23,7 @@ class TaskEdit extends React.Component {
       formData.append(key, value);
     }
 
-    fetch(`http://localhost:3000/tasks/${id}`, {
+    fetch(`/tasks/${id}`, {
       method: "PUT",
       headers: {},
       body: formData,
