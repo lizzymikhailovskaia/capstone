@@ -1,6 +1,6 @@
 task :before_assets_precompile do
   # run a command which starts your packaging
-  system('cd js && npm install && npm run build:client && cd ..')
+  system('cd js && npm install && npm run build:client && cd ../')
 end
 
 # every time you execute 'rake assets:precompile'
